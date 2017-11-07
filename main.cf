@@ -1,0 +1,14 @@
+
+2) Edit Postfix file
+# vi /etc/postfix/main.cf
+remove # from 75th line and write
+mail.zoom.com
+remove # from 83rd line and write
+zoom.com
+:wq
+) Download and install the squirrelmail application
+Firefox &
+ftp://192.168.0.250
+# cd /root/Downloads
+# rpm -ivhsquirrelmail* --force
+

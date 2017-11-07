@@ -1,0 +1,49 @@
+1) IN MAIL SERVER (POSTFIX)
+# yum install postfix* php-* dovecot* httpd* hunspell-en* mod_ssl* tmpwatch* --skip-broken -y
+
+2) Edit Postfix file
+# vi /etc/postfix/main.cf
+remove # from 75th line and write
+mail.zoom.com
+remove # from 83rd line and write
+zoom.com
+:wq
+) Download and install the squirrelmail application
+Firefox &
+ftp://192.168.0.250
+# cd /root/Downloads
+# rpm -ivhsquirrelmail* --force
+
+3) Edit dovecot 1st file
+# vi /etc/dovecot/conf.d/10-auth.conf
+remove # from 10th line and change from yes into no
+remove # from 100th line and write plain login
+:wq
+
+4) Edit dovecot 2nd file
+# vi /etc/dovecot/conf.d/10-mail.conf
+remove # from 25th line and complete mail direg: /var/spool/mail
+119: mail_access_group = mail    (remove # from beginning of line and mail at last)
+
+:wq
+
+
+5) Copy squirrel dir data into http default dir
+cp –rv /usr/share/squirrelmail/*  /var/www/html
+
+
+
+6) Restart the services
+# service postfix restart
+# service dovecot restart
+# servicehttpd restart
+
+7) Add some users
+# useradd tom
+# useradd john
+# passwd tom
+# passwd john
+
+8) Open web browser and compose the mails
+# firefox
+http://mail.zoom.com
